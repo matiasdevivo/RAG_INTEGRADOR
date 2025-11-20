@@ -172,7 +172,7 @@ Git instalado
 
 Clonar el repositorio
 
-git clone https://github.com/matiasdevivo/proyecto-rag-datatutor.git
+git clone https://github.com/matiasdevivo/RAG_INTEGRADOR
 cd proyecto-rag-datatutor
 
 
