@@ -111,6 +111,14 @@ Streamlit con chat y fuentes citadas.
    │   Streamlit UI      │
    └─────────────────────┘
 
+flowchart TD
+    A[PDFs en ./data] -->|Ingesta| B[Text Splitter]
+    B -->|Chunks| C[Embeddings (HF)]
+    C -->|Vectores| D[ChromaDB / db]
+    D -->|Retrieve (k=3)| E[LLM (FLAN-T5 Base)]
+    E -->|Respuesta + citas| F[Streamlit UI]
+
+
 ## Stack Tecnológico
 
 **LLM:** google/flan-t5-base
