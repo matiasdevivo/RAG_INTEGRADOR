@@ -1,22 +1,22 @@
-# RAG_INTEGRADOR
-📘 README.md — DataTutor: Sistema RAG para Introducción al Análisis de Datos
-🧠 Descripción
+# DataTutor: Sistema RAG para Introducción al Análisis de Datos
+
+## Descripción
 
 DataTutor es un sistema de Retrieval-Augmented Generation (RAG) que permite consultar conceptos fundamentales de la materia Introducción al Análisis de Datos, utilizando como base un corpus compuesto por las presentaciones oficiales de la cátedra (IFTS 24).
 
 El sistema permite realizar preguntas en lenguaje natural y devuelve respuestas citando los fragmentos exactos de los documentos donde se encontró la información.
 
-Desarrollado como Trabajo Integrador N°2 para la materia Procesamiento del Habla e Introducción a LLMs (IFTS 24).
+Desarrollado como Trabajo Integrador N°2 para la materia NLP (NATURAL LANGUAGE PROCESSING) (IFTS 24).
 
-🚀 Demo
-▶️ Ejecución local
+## Demo
+
+Ejecución local
 streamlit run app.py
 
-
 Abrir en navegador:
-👉 http://localhost:8501
+http://localhost:8501
 
-🎯 Problema que Resuelve
+## Problema que Resuelve
 
 Los estudiantes deben revisar múltiples archivos PDF para ubicar definiciones, conceptos y ejemplos.
 Este proceso es lento y disperso.
@@ -41,13 +41,15 @@ No requiere entrenamiento del modelo
 
 Es transparente y verificable
 
-🏗️ Arquitectura del Sistema
-🔄 Pipeline RAG
+## Arquitectura del Sistema
 
-Ingesta:
+### Pipeline RAG
+
+**Ingesta:**
+
 Carga automática de PDFs ubicados en ./data usando DirectoryLoader + PyPDFLoader.
 
-Chunking:
+**Chunking:**
 
 RecursiveCharacterTextSplitter
 
@@ -55,27 +57,27 @@ Chunk size: 800
 
 Overlap: 200
 
-Embeddings:
+**Embeddings:**
 
 sentence-transformers/all-MiniLM-L6-v2
 
+**Vector Storage:**
 
-Vector Storage:
 ChromaDB (persistencia local en ./db).
 
-Retrieval:
+**Retrieval:**
 
 Vector search
 
 k = 3 chunks relevantes
 
-Generation:
+**Generation:**
+
 LLM local:
 
 google/flan-t5-base
 
-
-Interfaz:
+**Interfaz:**
 Streamlit con chat y fuentes citadas.
 
 📊 Diagrama de Flujo
@@ -109,21 +111,21 @@ Streamlit con chat y fuentes citadas.
    │   Streamlit UI      │
    └─────────────────────┘
 
-🛠️ Stack Tecnológico
+## Stack Tecnológico
 
-LLM: google/flan-t5-base
+**LLM:** google/flan-t5-base
 
-Embeddings: sentence-transformers/all-MiniLM-L6-v2
+**Embeddings:** sentence-transformers/all-MiniLM-L6-v2
 
-Vector Database: ChromaDB
+**Vector Database:** ChromaDB
 
-Orquestación: LangChain
+**Orquestación:** LangChain
 
-Interfaz: Streamlit
+**Interfaz:** Streamlit
 
-Deployment: Ejecución local
+**Deployment:** Ejecución local
 
-Otras librerías:
+**Otras librerías:**
 
 transformers
 
@@ -139,19 +141,19 @@ chromadb
 
 pypdf
 
-📚 Corpus de Documentos
+## Corpus de Documentos
 
-Dominio: Introducción al Análisis de Datos
+**Dominio:** Introducción al Análisis de Datos
 
-Cantidad: 4 documentos PDF
+**Cantidad:** 4 documentos PDF
 
-Fuente: Presentaciones oficiales del curso (IFTS 24)
+**Fuente:** Presentaciones oficiales del curso (IFTS 24)
 
-Formato: PDF
+**Formato:** PDF
 
-Idioma: Español
+**Idioma:** Español
 
-Documentos:
+**Documentos:**
 
 #1 Introducción al análisis de datos.pdf
 
@@ -161,14 +163,15 @@ Introducción a Excel para Data Analytics.pdf
 
 Introducción a la visualización de datos.pdf
 
-🧩 Instalación y Uso Local
-Prerrequisitos
+## Instalación y Uso Local
+
+### Prerrequisitos
 
 Python 3.9+
 
 Git instalado
 
-🔧 Pasos de instalación
+## Pasos de instalación
 
 Clonar el repositorio
 
@@ -197,9 +200,9 @@ Ejecutar la aplicación
 streamlit run app.py
 
 
-👉 Abrir en navegador: http://localhost:8501
+Abrir en navegador: http://localhost:8501
 
-📁 Estructura del Proyecto
+## Estructura del Proyecto
 ├── app.py                  # Aplicación Streamlit
 ├── rag_pipeline.py         # Pipeline RAG (embeddings, llm, retrieval)
 ├── ingest.py               # Ingesta y vectorización de documentos
@@ -212,7 +215,7 @@ streamlit run app.py
 │   └── visualizacion.pdf
 └── db/                     # Base vectorial generada
 
-💬 Ejemplos de Consultas
+## Ejemplos de Consultas
 
 “¿Qué es el análisis exploratorio de datos?”
 
@@ -222,24 +225,24 @@ streamlit run app.py
 
 “Explicame qué es un filtro avanzado en Excel.”
 
-🧠 Decisiones de Diseño
-✔ LLM: flan-t5-base
+## Decisiones de Diseño
+LLM: flan-t5-base
 
 Elegido porque es liviano, rápido y funciona sin GPU.
 
-✔ Embeddings: MiniLM-L6-v2
+Embeddings: MiniLM-L6-v2
 
 Balance ideal entre velocidad y rendimiento semántico.
 
-✔ Chunk size = 800 + overlap de 200
+Chunk size = 800 + overlap de 200
 
 Captura suficiente contexto sin cortar definiciones.
 
-✔ top-k = 3
+top-k = 3
 
 Equilibrio entre relevancia y concisión.
 
-⚠️ Limitaciones Conocidas
+## Limitaciones Conocidas
 
 Corpus pequeño (4 PDFs)
 
@@ -251,7 +254,7 @@ Solo funciona en español
 
 Requiere ejecución local (sin deployment web)
 
-🔮 Mejoras Futuras
+## Mejoras Futuras
 
 Agregar más documentos de la materia
 
@@ -261,24 +264,25 @@ Deployment en Hugging Face Spaces
 
 Agregar almacenamiento de historial de chat
 
-🛠 Troubleshooting
-❌ “No module named langchain.chains”
+## Troubleshooting
+
+“No module named langchain.chains”
 pip install "langchain==0.2.16"
 
-❌ “ImportError: RecursiveCharacterTextSplitter”
+“ImportError: RecursiveCharacterTextSplitter”
 pip install langchain-text-splitters
 
-❌ Streamlit queda congelado
+Streamlit queda congelado
 
 Presionar:
 
 Ctrl + C
 
-👤 Autor
+## Autor
 
 Matías de Vivo
 
-🎓 Información Académica
+## Información Académica
 
 Trabajo Integrador N°2
 Materia: NLP
