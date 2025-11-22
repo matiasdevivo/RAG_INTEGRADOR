@@ -80,43 +80,18 @@ google/flan-t5-base
 **Interfaz:**
 Streamlit con chat y fuentes citadas.
 
-📊 Diagrama de Flujo
-        ┌─────────────┐
-        │   PDFs en   │
-        │   ./data    │
-        └──────┬──────┘
-               │ Ingesta
-               ▼
-      ┌───────────────────┐
-      │ Text Splitter     │
-      └──────┬────────────┘
-             │ Chunks
-             ▼
-     ┌─────────────────────┐
-     │ Embeddings (HF)     │
-     └──────┬──────────────┘
-            │ Vectores
-            ▼
-   ┌────────────────────┐
-   │   ChromaDB / db    │
-   └──────┬──────────────┘
-          │ Retrieve (k=3)
-          ▼
-   ┌─────────────────────┐
-   │  LLM (FLAN-T5 Base) │
-   └──────┬──────────────┘
-          │ Respuesta + citas
-          ▼
-   ┌─────────────────────┐
-   │   Streamlit UI      │
-   └─────────────────────┘
+## Diagrama de Flujo
 
+```mermaid
 flowchart TD
-    A[PDFs en ./data] -->|Ingesta| B[Text Splitter]
-    B -->|Chunks| C[Embeddings (HF)]
-    C -->|Vectores| D[ChromaDB / db]
-    D -->|Retrieve (k=3)| E[LLM (FLAN-T5 Base)]
-    E -->|Respuesta + citas| F[Streamlit UI]
+    A[PDFs en data/] --> B[Ingesta]
+    B --> C[Text Splitter]
+    C --> D[Embeddings HF]
+    D --> E[ChromaDB]
+    E --> F[Retrieve k=3]
+    F --> G[LLM FLAN-T5 Base]
+    G --> H[Streamlit UI]
+```
 
 
 ## Stack Tecnológico
@@ -222,6 +197,39 @@ Abrir en navegador: http://localhost:8501
 │   ├── excel.pdf
 │   └── visualizacion.pdf
 └── db/                     # Base vectorial generada
+
+```mermaid
+flowchart TD
+    A[app.py<br/>Aplicación Streamlit]
+    B[rag_pipeline.py<br/>Pipeline RAG]
+    C[ingest.py<br/>Ingesta y vectorización]
+    D[requirements.txt<br/>Dependencias]
+    E[README.md<br/>Documentación]
+    F[data/<br/>PDFs fuente]
+    G[db/<br/>Base vectorial]
+
+    F1[clase1.pdf]
+    F2[clase2.pdf]
+    F3[excel.pdf]
+    F4[visualizacion.pdf]
+
+    subgraph Proyecto RAG
+        A
+        B
+        C
+        D
+        E
+        F
+        G
+    end
+
+    %% PDFs en columna debajo de data/
+    F --> F1
+    F1 --> F2
+    F2 --> F3
+    F3 --> F4
+```
+
 
 ## Ejemplos de Consultas
 
